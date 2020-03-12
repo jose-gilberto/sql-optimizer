@@ -1,0 +1,1 @@
+SELECT id, nome FROM tabelaA WHERE id = 1
