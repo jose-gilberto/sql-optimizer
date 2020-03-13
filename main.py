@@ -9,39 +9,41 @@ args = vars(ap.parse_args())
 
 def main():
     # Abre o arquivo somente para leitura
-    a = open(args['file'], 'r')
+    # a = open(args['file'], 'r')
     
     # Define o tamanho do buffer
     buffer_size = int(args['bsize'])
-    
+    buffer = Buffer(buffer_size, args['file'])
+    buffer.open_file()
     # Gera um buffer do tamanho determinado com + 2 espaços
     # para os sentinelas 'eof'
-    data = [None for i in range(2*buffer_size + 2)]
-    data[buffer_size], data[-1]  = 'eof', 'eof'
+    # data = [None for i in range(2*buffer_size + 2)]
+    # data[buffer_size], data[-1]  = 'eof', 'eof'
 
     # Flag de checagem para o buffer
-    nbuffer = 0
+    # nbuffer = 0
 
     while True:
         # Lê os próximos n caracteres oara o buffer
-        tmp = a.read(buffer_size)
-        
+        # tmp = a.read(buffer_size)
+        flag = buffer.read()
+
         # Para o loop caso o arquivo tenha terminado
-        if tmp == '':
+        if flag == False:
             break
 
         # Checagem da flag de buffer
         # 0 -> primeira metade
         # 1 -> segunda metade
         # Atribui os caracteres lidos do arquivo para o buffer
-        if nbuffer == 0:   
-            data[0:buffer_size] = tmp
-            nbuffer = 1
-        else:
-            data[buffer_size + 1: -1] = tmp
-            nbuffer = 0
+        # if nbuffer == 0:   
+        #     data[0:buffer_size] = tmp
+        #     nbuffer = 1
+        # else:
+        #     data[buffer_size + 1: -1] = tmp
+        #     nbuffer = 0
         
-        print(data)
+        print(buffer.get_buffer())
 
 if __name__ == "__main__":
     main()
