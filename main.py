@@ -1,10 +1,18 @@
+# coding: utf-8
+import argparse
+from query_parser import Buffer
+
+ap = argparse.ArgumentParser()
+ap.add_argument('-f', '--file', required=True, help='Name of the source file')
+ap.add_argument('-b', '--bsize', required=True, help='Size of the buffer')
+args = vars(ap.parse_args())
 
 def main():
     # Abre o arquivo somente para leitura
-    a = open('./test.sql', 'r')
+    a = open(args['file'], 'r')
     
     # Define o tamanho do buffer
-    buffer_size = 10
+    buffer_size = int(args['bsize'])
     
     # Gera um buffer do tamanho determinado com + 2 espaços
     # para os sentinelas 'eof'
