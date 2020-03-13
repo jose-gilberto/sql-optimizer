@@ -7,6 +7,13 @@ ap.add_argument('-f', '--file', required=True, help='Name of the source file')
 ap.add_argument('-b', '--bsize', required=True, help='Size of the buffer')
 args = vars(ap.parse_args())
 
+# automato[estado][entrada] -> retorna o próximo estado, se for -1
+automate_dict = {
+    0: {
+        
+    }
+}
+
 def main():
     # Abre o arquivo somente para leitura
     # a = open(args['file'], 'r')
