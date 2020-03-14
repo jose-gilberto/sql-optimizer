@@ -2,16 +2,31 @@
 class Buffer:
 
     def __init__(self, bsize, filename):
+        """ Cria uma instância de um buffer de tamanho n vazio.
+
+        Keyword arguments:
+        bsize -- Tamanho do buffer, o buffer real terá o dobro do tamanho para formar os pares.
+        filename -- Caminho/Nome do arquivo a ser lido.
+        """
         self._size = bsize
         self._filename = filename
         self._buffer = [None for i in range((self._size * 2) + 2)]
+        # Marcação dos sentinelas
         self._buffer[self._size], self._buffer[-1] = 'eof', 'eof'
+        # Flag para indicar o próximo buffer
+        # Buffer atual = nbuffer - 1
         self._nbuffer = 0
 
     def open_file(self):
+        """ Abre uma referência de memória para o arquivo sem trazê-lo todo para a memória.
+        Armazena uma instância de file object para ser manipulada posteriormente.
+        """
         self._file = open(self._filename, 'r')
 
     def read(self):
+        """ Lê uma parte do arquivo e armazena no buffer, caso o arquivo tenha terminado retorna 
+        False, caso contrário retorna True.
+        """
         tmp = self._file.read(self._size)
 
         if tmp == '':
@@ -27,4 +42,5 @@ class Buffer:
         return True
 
     def get_buffer(self):
+        """ Retorna o buffer completo como array. """
         return self._buffer
