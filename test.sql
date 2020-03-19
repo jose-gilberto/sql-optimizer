@@ -1,1 +1,1 @@
-SELECT id, nome FROM tabelaA WHERE id = 1
+SELECT sales.id, tabelaA.nome FROM tabelaA WHERE id = 1

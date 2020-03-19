@@ -41,6 +41,17 @@ class Buffer:
         
         return True
 
+    def eof_indexes(self):
+        indexes = []
+        for i in range(len(self._buffer)):
+            if self._buffer[i] == 'eof':
+                indexes.append(i)
+        return indexes      
+
     def get_buffer(self):
-        """ Retorna o buffer completo como array. """
-        return self._buffer
+        """ Retorna o buffer da flag como array. """
+        eof_indexes = self.eof_indexes()
+        if self._nbuffer == 1:
+            return self._buffer[:eof_indexes[0] + 1]
+        else:
+            return self._buffer[eof_indexes[0] + 1:]
