@@ -1,6 +1,7 @@
 # coding: utf-8
 import argparse
 from query_parser import Buffer
+from query_parser import SymbolTable
 
 ap = argparse.ArgumentParser()
 ap.add_argument('-f', '--file', required=True, help='Name of the source file')
@@ -14,7 +15,7 @@ letters = ['A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g',
            'Y', 'y', 'Z', 'z', '_'
 ]
 
-symbols_table = {}
+symbols_table = SymbolTable()
 # automato[estado][entrada] -> retorna o próximo estado, se for -1
 automate_dict = {
     0: {
@@ -83,7 +84,7 @@ automate_dict = {
     },
     9: {
         'final': True,
-        'res': '<ID>',
+        'res': 'ID',
         'next': False
     },
     10: {
@@ -294,8 +295,15 @@ def main():
             # print('Char: {} - State: {}'.format(char, state))
 
             if automate_dict[state]['final'] == True:
-                tokens.append(automate_dict[state]['res'])
+                if automate_dict[state]['res'] == 'ID':
+                    id = symbols_table.add(lexem)
+                    token = '<' + automate_dict[state]['res'] + ', ' + str(id) + '>'
+                    tokens.append(token)
+                else:
+                    tokens.append(automate_dict[state]['res'])
+                
                 print('Lexem: {} - Len: {}'.format(lexem, len(lexem)))
+
                 # print(tokens)
                 if automate_dict[state]['next'] == True:
                     i += 1
@@ -322,6 +330,7 @@ def main():
             break
 
     print(tokens)
+    print(symbols_table.get_table())
 
 def classifier_char(char, state):
     char = 'blank' if char == ' ' else char
