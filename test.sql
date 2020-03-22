@@ -1,1 +1,1 @@
-SELECT sales.id, tabelaA.nome FROM tabelaA WHERE id = 1
+SELECT table.*, name FROM table WHERE id = selec AND table.o = 1 OR name LIKE = 'Joao'

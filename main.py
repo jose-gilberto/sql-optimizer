@@ -35,37 +35,48 @@ automate_dict = {
         'F': 10,
         'f': 10,
         'W': 15,
-        'w': 15
+        'w': 15,
+        'A': 21,
+        'a': 21,
+        'O': 25,
+        'o': 25,
+        'L': 28,
+        'l': 28
     },
     1: {
         'final': False,
         'E': 2,
         'e': 2,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     2: {
         'final': False,
         'L': 3,
         'l': 3,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     3: {
         'final': False,
         'E': 4,
         'e': 4,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     4: {
         'final': False,
         'C': 5,
         'c': 5,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     5: {
         'final': False,
         'T': 6,
         't': 6,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     6: {
         'final': False,
@@ -91,19 +102,22 @@ automate_dict = {
         'final': False,
         'R': 11,
         'r': 11,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     11: {
         'final': False,
         'O': 12,
         'o': 12,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     12: {
         'final': False,
         'M': 13,
         'm': 13,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     13: {
         'final': False,
@@ -119,25 +133,29 @@ automate_dict = {
         'final': False,
         'H': 16,
         'h': 16,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     16: {
         'final': False,
         'E': 17,
         'e': 17,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     17: {
         'final': False,
         'R': 18,
         'r': 18,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     18: {
         'final': False,
         'E': 19,
         'e': 19,
-        'letter': 8
+        'letter': 8,
+        'outro': 9
     },
     19: {
         'final': False,
@@ -147,6 +165,78 @@ automate_dict = {
     20: {
         'final': True,
         'res': 'WHERE',
+        'next': False
+    },
+    21: {
+        'final': False,
+        'N': 22,
+        'n': 22,
+        'letter': 8,
+        'outro': 9
+    },
+    22: {
+        'final': False,
+        'D': 23,
+        'd': 23,
+        'letter': 8,
+        'outro': 9
+    },
+    23: {
+        'final': False,
+        'outro': 24,
+        'letter': 8
+    },
+    24: {
+        'final': True,
+        'res': 'AND',
+        'next': False
+    },
+    25: {
+        'final': False,
+        'R': 26,
+        'r': 26,
+        'letter': 8,
+        'outro': 9
+    },
+    26: {
+        'final': False,
+        'letter': 8,
+        'outro': 27
+    },
+    27: {
+        'final': True,
+        'res': 'OR',
+        'next': False
+    },
+    28: {
+        'final': False,
+        'I': 29,
+        'i': 29,
+        'letter': 8,
+        'outro': 9
+    },
+    29: {
+        'final': False,
+        'K': 30,
+        'k': 30,
+        'letter': 8,
+        'outro': 9
+    },
+    30: {
+        'final': False,
+        'E': 31,
+        'e': 31,
+        'letter': 8,
+        'outro': 9
+    },
+    31: {
+        'final': False,
+        'letter': 8,
+        'outro': 32
+    },
+    32: {
+        'final': True,
+        'res': 'LIKE',
         'next': False
     },
     33: {
@@ -202,7 +292,8 @@ automate_dict = {
     },
     43: {
         'final': True,
-        'res': '<MULT>'
+        'res': '<MULT>',
+        'next': False
     },
     44: {
         'final': False,
@@ -212,7 +303,7 @@ automate_dict = {
     },
     45: {
         'final': True,
-        'res': '<NUM>',
+        'res': 'NUM',
         'next': False
     },
     46: {
@@ -231,7 +322,7 @@ automate_dict = {
     },
     49: {
         'final': True,
-        'res': '<TXT>',
+        'res': 'TXT',
         'next': True
     }
 }
@@ -264,10 +355,29 @@ def main():
 
         if flag == False:
             if automate_dict[state]['final'] == True:
-                tokens.append(automate_dict[state]['res'])
+                if automate_dict[state]['res'] == 'NUM':
+                    token = '<' + automate_dict[state]['res'] + ', ' + lexem + '>'
+                    tokens.append(token)
+                elif automate_dict[state]['res'] == 'TXT':
+                    token = '<' + automate_dict[state]['res'] + ', ' + lexem + '>'
+                    tokens.append(token)
+                elif automate_dict[state]['res'] == 'ID':
+                    id = symbols_table.add(lexem)
+                    token = '<' + automate_dict[state]['res'] + ', ' + str(id) + '>'
+                    tokens.append(token)
+                else:
+                    tokens.append(automate_dict[state]['res'])
             elif 'outro' in automate_dict[state]:
                 state = automate_dict[state]['outro']
-                tokens.append(automate_dict[state]['res'])
+                if automate_dict[state]['res'] == 'NUM':
+                    token = '<' + automate_dict[state]['res'] + ', ' + lexem + '>'
+                    tokens.append(token)
+                elif automate_dict[state]['res'] == 'ID':
+                    id = symbols_table.add(lexem)
+                    token = '<' + automate_dict[state]['res'] + ', ' + str(id) + '>'
+                    tokens.append(token)
+                else:
+                    tokens.append(automate_dict[state]['res'])
             break
 
         arr = buffer.get_buffer()
@@ -295,14 +405,20 @@ def main():
             # print('Char: {} - State: {}'.format(char, state))
 
             if automate_dict[state]['final'] == True:
-                if automate_dict[state]['res'] == 'ID':
+                if automate_dict[state]['res'] == 'NUM':
+                    token = '<' + automate_dict[state]['res'] + ', ' + lexem + '>'
+                    tokens.append(token)
+                elif automate_dict[state]['res'] == 'TXT':
+                    token = '<' + automate_dict[state]['res'] + ', ' + lexem + '>'
+                    tokens.append(token)
+                elif automate_dict[state]['res'] == 'ID':
                     id = symbols_table.add(lexem)
                     token = '<' + automate_dict[state]['res'] + ', ' + str(id) + '>'
                     tokens.append(token)
                 else:
                     tokens.append(automate_dict[state]['res'])
                 
-                print('Lexem: {} - Len: {}'.format(lexem, len(lexem)))
+                # print('Lexem: {} - Len: {}'.format(lexem, len(lexem)))
 
                 # print(tokens)
                 if automate_dict[state]['next'] == True:
@@ -313,8 +429,11 @@ def main():
                 if char == 'eof':
                     i += 1
                 else:
-                    # print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char, state, classifier_char(char, state)))
-                    if classifier_char(char, state) != 'outro':
+                    print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char, state, classifier_char(char, state)))
+                    if state == 48 and classifier_char(char, state) == 'outro':
+                        i += 1
+                        lexem += char
+                    elif classifier_char(char, state) != 'outro':
                         i += 1
                         if char != ' ':
                             lexem += char
