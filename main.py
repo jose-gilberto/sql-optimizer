@@ -17,6 +17,8 @@ letters = ['A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g',
 
 symbols_table = SymbolTable()
 # automato[estado][entrada] -> retorna o próximo estado, se for -1
+# state = automate_dict[state]['E']
+# state = 2
 automate_dict = {
     0: {
         'final': False,
@@ -76,6 +78,7 @@ automate_dict = {
         'T': 6,
         't': 6,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     6: {
@@ -91,6 +94,7 @@ automate_dict = {
     8: {
         'final': False,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     9: {
@@ -330,7 +334,7 @@ automate_dict = {
 def main():
     # Abre o arquivo somente para leitura
     # a = open(args['file'], 'r')
-    
+    count = 1
     # Define o tamanho do buffer
     buffer_size = int(args['bsize'])
     buffer = Buffer(buffer_size, args['file'])
@@ -452,7 +456,7 @@ def main():
     print(symbols_table.get_table())
 
 def classifier_char(char, state):
-    char = 'blank' if char == ' ' else char
+    char = 'blank' if (char == ' ' or char == '\n') else char
     if char in automate_dict[state]:
         return char
     elif char in letters and 'letter' in automate_dict[state]:

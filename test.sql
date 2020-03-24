@@ -1,1 +1,1 @@
-SELECT table.*, name FROM table WHERE id = selec AND table.o = 1 OR name LIKE = 'Joao'
+SELECT , table.nome2 . table.id SELECT2 table ,
