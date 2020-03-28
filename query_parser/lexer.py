@@ -3,6 +3,7 @@ from .resources import automate_dict
 from .resources import letters
 from .resources import numbers
 
+
 class Lexer:
 
     def __init__(self, symbol_table, buffer):
@@ -19,7 +20,7 @@ class Lexer:
 
         while True:
             flag = self._buffer.read()
-            
+
             if flag == False:
                 if self._automate[state]['final'] == True:
                     self.make_token(state, lexem)
@@ -37,7 +38,7 @@ class Lexer:
                     else:
                         self._tokens.append(self._automate[state]['res'])
                 break
-            
+
             arr = self._buffer.get_buffer()
             nbuffer = 1 if nbuffer == 0 else 0
             i = 0
@@ -57,12 +58,13 @@ class Lexer:
                         if char == '\n':
                             line += 1
 
-                        # print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char,
-                        #                                                        state, self.classifier_char(char, state)))
+                        print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char,
+                                                                                   state, self.classifier_char(char, state)))
 
                         if self.classifier_char(char, state) not in self._automate[state]:
-                            raise SyntaxError('Syntax error on line: {} in lexeme: {}'.format(line, lexem + char))
-                                                
+                            raise SyntaxError(
+                                'Syntax error on line: {} in lexeme: {}'.format(line, lexem + char))
+
                         if state == 48 and self.classifier_char(char, state) == 'outro':
                             i += 1
                             lexem += char
@@ -70,8 +72,9 @@ class Lexer:
                             i += 1
                             if char != ' ':
                                 lexem += char
-                        state = self._automate[state][self.classifier_char(char, state)]
-        
+                        state = self._automate[state][self.classifier_char(
+                            char, state)]
+
             if flag == False:
                 break
 
@@ -86,6 +89,7 @@ class Lexer:
             return True
 
     def make_token(self, state, lexem):
+
         if self._automate[state]['res'] == 'NUM':
             token = '<' + \
                 self._automate[state]['res'] + ', ' + lexem + '>'
@@ -99,6 +103,10 @@ class Lexer:
             id = self._symbol_table.add(lexem)
             token = '<' + \
                 self._automate[state]['res'] + ', ' + str(id) + '>'
+            self._tokens.append(token)
+        elif self._automate[state]['res'] == 'DATE':
+            token = '<' +\
+                self._automate[state]['res'] + ', ' + lexem + '>'
             self._tokens.append(token)
         else:
             self._tokens.append(self._automate[state]['res'])

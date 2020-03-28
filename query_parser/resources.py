@@ -37,6 +37,7 @@ automate_dict = {
         'E': 2,
         'e': 2,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     2: {
@@ -44,6 +45,7 @@ automate_dict = {
         'L': 3,
         'l': 3,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     3: {
@@ -51,6 +53,7 @@ automate_dict = {
         'E': 4,
         'e': 4,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     4: {
@@ -58,6 +61,7 @@ automate_dict = {
         'C': 5,
         'c': 5,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     5: {
@@ -71,7 +75,8 @@ automate_dict = {
     6: {
         'final': False,
         'outro': 7,
-        'letter': 8
+        'letter': 8,
+        'num': 8,
     },
     7: {
         'final': True,
@@ -94,6 +99,7 @@ automate_dict = {
         'R': 11,
         'r': 11,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     11: {
@@ -101,6 +107,7 @@ automate_dict = {
         'O': 12,
         'o': 12,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     12: {
@@ -108,12 +115,14 @@ automate_dict = {
         'M': 13,
         'm': 13,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     13: {
         'final': False,
         'outro': 14,
-        'letter': 8
+        'letter': 8,
+        'num': 8,
     },
     14: {
         'final': True,
@@ -125,6 +134,7 @@ automate_dict = {
         'H': 16,
         'h': 16,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     16: {
@@ -132,6 +142,7 @@ automate_dict = {
         'E': 17,
         'e': 17,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     17: {
@@ -139,6 +150,7 @@ automate_dict = {
         'R': 18,
         'r': 18,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     18: {
@@ -146,12 +158,14 @@ automate_dict = {
         'E': 19,
         'e': 19,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     19: {
         'final': False,
         'outro': 20,
-        'letter': 8
+        'letter': 8,
+        'num': 8,
     },
     20: {
         'final': True,
@@ -163,6 +177,7 @@ automate_dict = {
         'N': 22,
         'n': 22,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     22: {
@@ -170,12 +185,14 @@ automate_dict = {
         'D': 23,
         'd': 23,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     23: {
         'final': False,
         'outro': 24,
-        'letter': 8
+        'letter': 8,
+        'num': 8,
     },
     24: {
         'final': True,
@@ -187,11 +204,13 @@ automate_dict = {
         'R': 26,
         'r': 26,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     26: {
         'final': False,
         'letter': 8,
+        'num': 8,
         'outro': 27
     },
     27: {
@@ -204,6 +223,7 @@ automate_dict = {
         'I': 29,
         'i': 29,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     29: {
@@ -211,6 +231,7 @@ automate_dict = {
         'K': 30,
         'k': 30,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     30: {
@@ -218,11 +239,13 @@ automate_dict = {
         'E': 31,
         'e': 31,
         'letter': 8,
+        'num': 8,
         'outro': 9
     },
     31: {
         'final': False,
         'letter': 8,
+        'num': 8,
         'outro': 32
     },
     32: {
@@ -309,11 +332,81 @@ automate_dict = {
     48: {
         'final': False,
         'outro': 48,
+        'num': 50,
         "'": 49
     },
     49: {
         'final': True,
         'res': 'TXT',
-        'next': True
+        'next': False
+    },
+
+    50: {
+        'final': False,
+        'outro': 48,
+        'num': 51,
+        "'": 49
+    },
+    51: {
+        'final': False,
+        'outro': 48,
+        'num': 52,
+        "'": 49
+    },
+    52: {
+        'final': False,
+        'outro': 48,
+        'num': 53,
+        "'": 49
+    },
+
+    53: {
+        'final': False,
+        'outro': 48,
+        '-': 54,
+        "'": 49
+    },
+
+    54: {
+        'final': False,
+        'outro': 48,
+        'num': 55,
+        "'": 49
+    },
+    55: {
+        'final': False,
+        'outro': 48,
+        'num': 56,
+        "'": 49
+    },
+
+    56: {
+        'final': False,
+        'outro': 48,
+        '-': 57,
+        "'": 49
+    },
+
+    57: {
+        'final': False,
+        'outro': 48,
+        'num': 58,
+        "'": 49
+    },
+    58: {
+        'final': False,
+        'outro': 48,
+        'num': 59,
+    },
+
+    59: {
+        'final': False,
+        'outro': 48,
+        "'": 60
+    },
+    60: {
+        'final': True,
+        'res': 'DATE',
+        'next': False
     }
 }
