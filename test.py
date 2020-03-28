@@ -1,4 +1,7 @@
 import argparse
+import pprint
+import json
+import os
 from query_parser import Buffer
 from query_parser import Lexer
 from query_parser import SymbolTable
@@ -17,5 +20,12 @@ buffer.open_file()
 lexer = Lexer(symbols_table, buffer)
 tokens = lexer.run()
 
-print(tokens)
-print(symbols_table.get_table())
+print('\nToken List')
+pprint.pprint(tokens)
+print('\nSymbol Table')
+pprint.pprint(symbols_table.get_table())
+
+tokens_json = json.dumps(tokens)
+tokens_file = open('tokens.json', 'w+')
+tokens_file.write(tokens_json)
+tokens_file.close()

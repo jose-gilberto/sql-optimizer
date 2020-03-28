@@ -57,8 +57,8 @@ class Lexer:
                         if char == '\n':
                             line += 1
 
-                        print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char,
-                                                                               state, self.classifier_char(char, state)))
+                        # print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char,
+                        #                                                        state, self.classifier_char(char, state)))
 
                         if self.classifier_char(char, state) not in self._automate[state]:
                             raise SyntaxError('Syntax error on line: {} in lexeme: {}'.format(line, lexem + char))
@@ -91,8 +91,9 @@ class Lexer:
                 self._automate[state]['res'] + ', ' + lexem + '>'
             self._tokens.append(token)
         elif self._automate[state]['res'] == 'TXT':
+            new_lexem = lexem[1:-1]
             token = '<' + \
-                self._automate[state]['res'] + ', ' + lexem + '>'
+                self._automate[state]['res'] + ', ' + new_lexem + '>'
             self._tokens.append(token)
         elif self._automate[state]['res'] == 'ID':
             id = self._symbol_table.add(lexem)
