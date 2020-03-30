@@ -15,7 +15,7 @@ class Lexer:
         self._tokens = []
 
     def run(self):
-        nbuffer, state, line, col = 0, 0, 1, 0
+        nbuffer, state, line, col = 0, 0, 1, 1
         lexem = ''
 
         while True:
@@ -24,8 +24,8 @@ class Lexer:
             if flag == False:
                 if self._automate[state]['final'] == True:
                     self.make_token(state, lexem)
-                elif 'outro' in self._automate[state]:
-                    state = self._automate[state]['outro']
+                elif 'other' in self._automate[state]:
+                    state = self._automate[state]['other']
                     if self._automate[state]['res'] == 'NUM':
                         token = '<' + \
                             self._automate[state]['res'] + ', ' + lexem + '>'
@@ -57,20 +57,24 @@ class Lexer:
                     else:
                         if char == '\n':
                             line += 1
+                            col = 0
 
+                        print('Line: {} - Col: {}'.format(line, col))
                         print('\033[93m Debug - Char: {} - {} - {} \033[0m'.format(char,
                                                                                    state, self.classifier_char(char, state)))
 
                         if self.classifier_char(char, state) not in self._automate[state]:
                             raise SyntaxError(
-                                'Syntax error on line: {} in lexeme: {}'.format(line, lexem + char))
+                                'Syntax error on line: {}, col: {} in lexeme: {}'.format(line, col, lexem + char))
 
-                        if state == 48 and self.classifier_char(char, state) == 'outro':
+                        if state == 48 and self.classifier_char(char, state) == 'other':
                             i += 1
                             lexem += char
-                        elif self.classifier_char(char, state) != 'outro':
+                            col += 1
+                        elif self.classifier_char(char, state) != 'other':
                             i += 1
-                            if char != ' ':
+                            col += 1
+                            if char != ' ' and char != '\n':
                                 lexem += char
                         state = self._automate[state][self.classifier_char(
                             char, state)]
@@ -95,9 +99,9 @@ class Lexer:
                 self._automate[state]['res'] + ', ' + lexem + '>'
             self._tokens.append(token)
         elif self._automate[state]['res'] == 'TXT':
-            new_lexem = lexem[1:-1]
+            # new_lexem = lexem[1:-1]
             token = '<' + \
-                self._automate[state]['res'] + ', ' + new_lexem + '>'
+                self._automate[state]['res'] + ', ' + lexem + '>'
             self._tokens.append(token)
         elif self._automate[state]['res'] == 'ID':
             id = self._symbol_table.add(lexem)
@@ -125,4 +129,4 @@ class Lexer:
         elif char in self._numbers and 'num' in self._automate[state]:
             return 'num'
         else:
-            return 'outro'
+            return 'other'

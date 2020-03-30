@@ -38,7 +38,7 @@ automate_dict = {
         'e': 2,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     2: {
         'final': False,
@@ -46,7 +46,7 @@ automate_dict = {
         'l': 3,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     3: {
         'final': False,
@@ -54,7 +54,7 @@ automate_dict = {
         'e': 4,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     4: {
         'final': False,
@@ -62,7 +62,7 @@ automate_dict = {
         'c': 5,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     5: {
         'final': False,
@@ -70,11 +70,11 @@ automate_dict = {
         't': 6,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     6: {
         'final': False,
-        'outro': 7,
+        'other': 7,
         'letter': 8,
         'num': 8,
     },
@@ -87,7 +87,7 @@ automate_dict = {
         'final': False,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     9: {
         'final': True,
@@ -100,7 +100,7 @@ automate_dict = {
         'r': 11,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     11: {
         'final': False,
@@ -108,7 +108,7 @@ automate_dict = {
         'o': 12,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     12: {
         'final': False,
@@ -116,11 +116,11 @@ automate_dict = {
         'm': 13,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     13: {
         'final': False,
-        'outro': 14,
+        'other': 14,
         'letter': 8,
         'num': 8,
     },
@@ -135,7 +135,7 @@ automate_dict = {
         'h': 16,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     16: {
         'final': False,
@@ -143,7 +143,7 @@ automate_dict = {
         'e': 17,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     17: {
         'final': False,
@@ -151,7 +151,7 @@ automate_dict = {
         'r': 18,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     18: {
         'final': False,
@@ -159,11 +159,11 @@ automate_dict = {
         'e': 19,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     19: {
         'final': False,
-        'outro': 20,
+        'other': 20,
         'letter': 8,
         'num': 8,
     },
@@ -178,7 +178,7 @@ automate_dict = {
         'n': 22,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     22: {
         'final': False,
@@ -186,11 +186,11 @@ automate_dict = {
         'd': 23,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     23: {
         'final': False,
-        'outro': 24,
+        'other': 24,
         'letter': 8,
         'num': 8,
     },
@@ -205,13 +205,13 @@ automate_dict = {
         'r': 26,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     26: {
         'final': False,
         'letter': 8,
         'num': 8,
-        'outro': 27
+        'other': 27
     },
     27: {
         'final': True,
@@ -224,7 +224,7 @@ automate_dict = {
         'i': 29,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     29: {
         'final': False,
@@ -232,7 +232,7 @@ automate_dict = {
         'k': 30,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     30: {
         'final': False,
@@ -240,13 +240,13 @@ automate_dict = {
         'e': 31,
         'letter': 8,
         'num': 8,
-        'outro': 9
+        'other': 9
     },
     31: {
         'final': False,
         'letter': 8,
         'num': 8,
-        'outro': 32
+        'other': 32
     },
     32: {
         'final': True,
@@ -260,7 +260,7 @@ automate_dict = {
     },
     34: {
         'final': False,
-        'outro': 35,
+        'other': 35,
         '=': 36,
         '>': 37
     },
@@ -282,7 +282,7 @@ automate_dict = {
     38: {
         'final': False,
         '=': 39,
-        'outro': 40
+        'other': 40
     },
     39: {
         'final': True,
@@ -312,7 +312,7 @@ automate_dict = {
     44: {
         'final': False,
         'num': 44,
-        'outro': 45,
+        'other': 45,
         '.': 46
     },
     45: {
@@ -327,11 +327,11 @@ automate_dict = {
     47: {
         'final': False,
         'num': 47,
-        'outro': 45
+        'other': 45
     },
     48: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 50,
         "'": 49
     },
@@ -343,65 +343,65 @@ automate_dict = {
 
     50: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 51,
         "'": 49
     },
     51: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 52,
         "'": 49
     },
     52: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 53,
         "'": 49
     },
 
     53: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         '-': 54,
         "'": 49
     },
 
     54: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 55,
         "'": 49
     },
     55: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 56,
         "'": 49
     },
 
     56: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         '-': 57,
         "'": 49
     },
 
     57: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 58,
         "'": 49
     },
     58: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         'num': 59,
     },
 
     59: {
         'final': False,
-        'outro': 48,
+        'other': 48,
         "'": 60
     },
     60: {
